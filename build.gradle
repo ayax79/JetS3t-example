@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'net.java.dev.jets3t:jets3t:0.9.2',
+            'com.google.guava:guava:18.0',
+            'commons-io:commons-io:2.4',
+            'org.slf4j:slf4j-api:1.7.7'
+}
+
