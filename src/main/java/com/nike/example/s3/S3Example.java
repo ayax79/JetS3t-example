@@ -10,17 +10,17 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service;
 import org.jets3t.service.model.S3Bucket;
 import org.jets3t.service.model.S3Object;
 import org.jets3t.service.security.AWSCredentials;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class S3Example {
 
-    private static final Logger log = LoggerFactory.getLogger(S3Example.class);
+    private static final Logger log = Logger.getLogger(S3Example.class.getName());
 
     private static final String awsAccessKey = "YOUR_AWS_ACCESS_KEY";
     private static final String awsSecretKey = "YOUR_AWS_SECRET_KEY";
@@ -45,7 +45,7 @@ public class S3Example {
             final S3Object obj = new S3Object(key, value);
             service.putObject(bucket, obj);
         } catch (NoSuchAlgorithmException | IOException | S3ServiceException e) {
-            log.error(e.getMessage(), e);
+            log.log(Level.SEVERE, e.getMessage(), e);
         }
     }
 
@@ -56,7 +56,7 @@ public class S3Example {
                 try {
                     return writeToString(input.getDataInputStream());
                 } catch (IOException | ServiceException e) {
-                    log.error(e.getMessage(), e);
+                    log.log(Level.SEVERE, e.getMessage(), e);
                     return null;
                 }
             }
@@ -67,7 +67,7 @@ public class S3Example {
         try {
             return Optional.of(service.getObject(bucketName, key));
         } catch (S3ServiceException e) {
-            log.error(e.getMessage(), e);
+            log.log(Level.SEVERE, e.getMessage(), e);
             return Optional.absent();
         }
     }
@@ -89,7 +89,7 @@ public class S3Example {
             }
         }
         else {
-            log.warn("No value was found for your key!");
+            log.warning("Value not found for key");
         }
     }
 
