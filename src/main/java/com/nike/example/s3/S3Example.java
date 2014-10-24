@@ -3,6 +3,7 @@ package com.nike.example.s3;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.logging.LogFactory;
 import org.jets3t.service.S3Service;
 import org.jets3t.service.S3ServiceException;
 import org.jets3t.service.ServiceException;
@@ -80,6 +81,8 @@ public class S3Example {
 
 
     public static void main(String[] args) throws S3ServiceException {
+        // hack to force commons not to use log4j
+        LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
         final S3Example example = new S3Example();
         example.put("your key", "your value");
         final Optional<String> value = example.get("your key");

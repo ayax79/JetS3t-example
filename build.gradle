@@ -13,5 +13,4 @@ dependencies {
 
 mainClassName = 'com.nike.example.s3.S3Example'
 
-applicationDefaultJvmArgs = ['-Dhttpclient.proxy-host=http://connsvr.nike.com', '-Dhttpclient.proxy-port=8080']
-
+//applicationDefaultJvmArgs = ['-Dhttpclient.proxy-host=http://connsvr.nike.com', '-Dhttpclient.proxy-port=8080']
